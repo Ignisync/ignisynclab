@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import LayoutComponent from "@/components/layout/Layout";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 const projectTypes = [
   "Website Development",
@@ -49,19 +51,25 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          <motion.div 
+            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+            animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Let's <span className="text-gradient">Talk</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Have a project in mind? We'd love to hear about it. 
-              Fill out the form below and we'll get back to you within 24 hours.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Let's <span className="text-gradient">Talk</span>
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground">
+                Have a project in mind? We'd love to hear about it. 
+                Fill out the form below and we'll get back to you within 24 hours.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -71,175 +79,246 @@ const Contact = () => {
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Contact Info */}
             <div className="lg:col-span-2">
-              <div className="sticky top-32">
-                <h2 className="text-2xl font-bold mb-6">Get in touch</h2>
-                <p className="text-muted-foreground mb-8">
-                  Ready to start your project? Send us a message and let's make 
-                  something great together.
-                </p>
+              <FadeIn>
+                <div className="sticky top-32">
+                  <h2 className="text-2xl font-bold mb-6">Get in touch</h2>
+                  <p className="text-muted-foreground mb-8">
+                    Ready to start your project? Send us a message and let's make 
+                    something great together.
+                  </p>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Email us</h4>
-                      <a
-                        href="mailto:hello@ignisynclabs.com"
-                        className="text-muted-foreground hover:text-primary transition-colors"
+                  <StaggerContainer className="space-y-6">
+                    <StaggerItem>
+                      <motion.div 
+                        className="flex items-start gap-4"
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        hello@ignisynclabs.com
-                      </a>
-                    </div>
-                  </div>
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                          <Mail className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1">Email us</h4>
+                          <a
+                            href="mailto:hello@ignisynclabs.com"
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            hello@ignisynclabs.com
+                          </a>
+                        </div>
+                      </motion.div>
+                    </StaggerItem>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Location</h4>
-                      <p className="text-muted-foreground">United Kingdom</p>
-                    </div>
-                  </div>
-                </div>
+                    <StaggerItem>
+                      <motion.div 
+                        className="flex items-start gap-4"
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                          <MapPin className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1">Location</h4>
+                          <p className="text-muted-foreground">United Kingdom</p>
+                        </div>
+                      </motion.div>
+                    </StaggerItem>
+                  </StaggerContainer>
 
-                <div className="mt-12 p-6 rounded-2xl bg-card border border-border">
-                  <h4 className="font-semibold mb-2">What happens next?</h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-0.5">1.</span>
-                      We'll review your enquiry within 24 hours
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-0.5">2.</span>
-                      Schedule a free discovery call
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-0.5">3.</span>
-                      Receive a tailored proposal
-                    </li>
-                  </ul>
+                  <motion.div 
+                    className="mt-12 p-6 rounded-2xl bg-card border border-border"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <h4 className="font-semibold mb-2">What happens next?</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-0.5">1.</span>
+                        We'll review your enquiry within 24 hours
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-0.5">2.</span>
+                        Schedule a free discovery call
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-0.5">3.</span>
+                        Receive a tailored proposal
+                      </li>
+                    </ul>
+                  </motion.div>
                 </div>
-              </div>
+              </FadeIn>
             </div>
 
             {/* Form */}
             <div className="lg:col-span-3">
-              {isSubmitted ? (
-                <div className="flex flex-col items-center justify-center py-16 text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                    <CheckCircle className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">Thank you!</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Your message has been sent. We'll be in touch soon.
-                  </p>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({ name: "", email: "", projectType: "", message: "" });
-                    }}
+              <FadeIn delay={0.2}>
+                {isSubmitted ? (
+                  <motion.div 
+                    className="flex flex-col items-center justify-center py-16 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    Send another message
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Your name <span className="text-primary">*</span>
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="John Smith"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="h-12 bg-card border-border focus:border-primary"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email address <span className="text-primary">*</span>
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="john@example.com"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="h-12 bg-card border-border focus:border-primary"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="projectType" className="text-sm font-medium">
-                      Project type <span className="text-primary">*</span>
-                    </label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleChange}
-                      required
-                      className="w-full h-12 px-4 rounded-lg bg-card border border-border text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                    <motion.div 
+                      className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.2, type: "spring" }}
                     >
-                      <option value="" disabled>
-                        Select a project type
-                      </option>
-                      {projectTypes.map((type) => (
-                        <option key={type} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
-                      Tell us about your project <span className="text-primary">*</span>
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Describe your project, goals, and any specific requirements..."
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="bg-card border-border focus:border-primary resize-none"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    variant="hero"
-                    size="xl"
-                    className="w-full sm:w-auto"
-                    disabled={isSubmitting}
+                      <CheckCircle className="w-8 h-8 text-primary" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold mb-2">Thank you!</h3>
+                    <p className="text-muted-foreground mb-6">
+                      Your message has been sent. We'll be in touch soon.
+                    </p>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setIsSubmitted(false);
+                        setFormData({ name: "", email: "", projectType: "", message: "" });
+                      }}
+                    >
+                      Send another message
+                    </Button>
+                  </motion.div>
+                ) : (
+                  <motion.form 
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <span className="animate-pulse">Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-5 h-5" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              )}
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <motion.div 
+                        className="space-y-2"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        <label htmlFor="name" className="text-sm font-medium">
+                          Your name <span className="text-primary">*</span>
+                        </label>
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="John Smith"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="h-12 bg-card border-border focus:border-primary"
+                        />
+                      </motion.div>
+
+                      <motion.div 
+                        className="space-y-2"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                      >
+                        <label htmlFor="email" className="text-sm font-medium">
+                          Email address <span className="text-primary">*</span>
+                        </label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="h-12 bg-card border-border focus:border-primary"
+                        />
+                      </motion.div>
+                    </div>
+
+                    <motion.div 
+                      className="space-y-2"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <label htmlFor="projectType" className="text-sm font-medium">
+                        Project type <span className="text-primary">*</span>
+                      </label>
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleChange}
+                        required
+                        className="w-full h-12 px-4 rounded-lg bg-card border border-border text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                      >
+                        <option value="" disabled>
+                          Select a project type
+                        </option>
+                        {projectTypes.map((type) => (
+                          <option key={type} value={type}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                    </motion.div>
+
+                    <motion.div 
+                      className="space-y-2"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.25 }}
+                    >
+                      <label htmlFor="message" className="text-sm font-medium">
+                        Tell us about your project <span className="text-primary">*</span>
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Describe your project, goals, and any specific requirements..."
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={6}
+                        className="bg-card border-border focus:border-primary resize-none"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                        <Button
+                          type="submit"
+                          variant="hero"
+                          size="xl"
+                          className="w-full sm:w-auto"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <motion.span 
+                                animate={{ opacity: [0.5, 1, 0.5] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                              >
+                                Sending...
+                              </motion.span>
+                            </>
+                          ) : (
+                            <>
+                              Send Message
+                              <Send className="w-5 h-5" />
+                            </>
+                          )}
+                        </Button>
+                      </motion.div>
+                    </motion.div>
+                  </motion.form>
+                )}
+              </FadeIn>
             </div>
           </div>
         </div>
