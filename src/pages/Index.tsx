@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Code, Palette, Layout as LayoutIcon, Sparkles, Zap, Shield, Users, Globe } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import LayoutComponent from "@/components/layout/Layout";
+import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/animations/FadeIn";
+import heroImage from "@/assets/hero-web-dev.jpg";
 
 const services = [
   {
@@ -51,17 +54,20 @@ const whyUs = [
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    slug: "techstart-ecommerce",
+    title: "TechStart E-Commerce",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
   },
   {
-    title: "Restaurant Brand Identity",
+    slug: "flame-kitchen-brand",
+    title: "Flame Kitchen Brand",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
   },
   {
-    title: "Finance App Design",
+    slug: "finflow-dashboard",
+    title: "FinFlow Dashboard",
     category: "UI/UX Design",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
   },
@@ -72,80 +78,155 @@ const Index = () => {
     <LayoutComponent>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Effects */}
+        {/* Background Image */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
+          <img 
+            src={heroImage} 
+            alt="" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+        </div>
+
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+            animate={{ 
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+            animate={{ 
+              y: [0, 20, 0],
+              scale: [1, 0.9, 1],
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center stagger-children">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-8 animate-fade-up opacity-0">
-              <Sparkles className="w-4 h-4" />
-              Creative Technology Studio
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <FadeIn delay={0}>
+              <motion.div 
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-8"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Sparkles className="w-4 h-4" />
+                Creative Technology Studio
+              </motion.div>
+            </FadeIn>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-up opacity-0">
-              We Build Websites,{" "}
-              <span className="text-gradient">Brands</span> &{" "}
-              <span className="text-gradient">Digital Experiences</span>
-            </h1>
+            <FadeIn delay={0.1}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                We Build Websites,{" "}
+                <span className="text-gradient">Brands</span> &{" "}
+                <span className="text-gradient">Digital Experiences</span>
+              </h1>
+            </FadeIn>
             
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up opacity-0">
-              IgnisyncLabs helps startups, SMEs, and organisations ignite their digital presence 
-              with modern design and technology that converts.
-            </p>
+            <FadeIn delay={0.2}>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+                IgnisyncLabs helps startups, SMEs, and organisations ignite their digital presence 
+                with modern design and technology that converts.
+              </p>
+            </FadeIn>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0">
-              <Link to="/contact">
-                <Button variant="hero" size="xl">
-                  Get a Free Quote
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-              <Link to="/portfolio">
-                <Button variant="heroOutline" size="xl">
-                  View Our Work
-                </Button>
-              </Link>
-            </div>
+            <FadeIn delay={0.3}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link to="/contact">
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button variant="hero" size="xl">
+                      Get a Free Quote
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </motion.div>
+                </Link>
+                <Link to="/portfolio">
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button variant="heroOutline" size="xl">
+                      View Our Work
+                    </Button>
+                  </motion.div>
+                </Link>
+              </div>
+            </FadeIn>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center pt-2">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-primary rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
+        </motion.div>
       </section>
 
       {/* Services Section */}
       <section className="py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              End-to-end digital solutions tailored to your business needs.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                End-to-end digital solutions tailored to your business needs.
+              </p>
+            </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className="group p-6 rounded-2xl bg-card border border-border hover-lift hover-glow cursor-pointer"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
-              </div>
+              <StaggerItem key={index}>
+                <motion.div
+                  className="group p-6 rounded-2xl bg-card border border-border h-full cursor-pointer"
+                  whileHover={{ y: -8, boxShadow: "0 0 40px hsl(24 100% 50% / 0.15)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div 
+                    className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <service.icon className="w-6 h-6 text-primary" />
+                  </motion.div>
+                  <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground">{service.description}</p>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <div className="text-center mt-10">
-            <Link to="/services">
-              <Button variant="outline" size="lg">
-                Explore All Services
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+          <FadeIn delay={0.4}>
+            <div className="text-center mt-10">
+              <Link to="/services">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-block">
+                  <Button variant="outline" size="lg">
+                    Explore All Services
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </motion.div>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -154,39 +235,66 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Why Choose <span className="text-gradient">IgnisyncLabs</span>?
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                We're not just another agency. We're a dedicated partner committed to 
-                helping you succeed in the digital world.
-              </p>
+              <FadeIn>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  Why Choose <span className="text-gradient">IgnisyncLabs</span>?
+                </h2>
+              </FadeIn>
+              <FadeIn delay={0.1}>
+                <p className="text-muted-foreground mb-8">
+                  We're not just another agency. We're a dedicated partner committed to 
+                  helping you succeed in the digital world.
+                </p>
+              </FadeIn>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {whyUs.map((item, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
-                    </div>
-                  </div>
+                  <StaggerItem key={index}>
+                    <motion.div 
+                      className="flex gap-4"
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                      </div>
+                    </motion.div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </div>
 
-            <div className="relative">
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 p-8 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-gradient mb-2">5+</div>
-                  <p className="text-muted-foreground">Years of combined experience</p>
+            <ScaleIn delay={0.2}>
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 p-8 flex items-center justify-center">
+                  <div className="text-center">
+                    <motion.div 
+                      className="text-6xl md:text-7xl font-bold text-gradient mb-2"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                      5+
+                    </motion.div>
+                    <p className="text-muted-foreground">Years of combined experience</p>
+                  </div>
                 </div>
-              </div>
-              {/* Decorative element */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-2xl blur-2xl" />
-            </div>
+                <motion.div 
+                  className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-2xl blur-2xl"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+              </motion.div>
+            </ScaleIn>
           </div>
         </div>
       </section>
@@ -194,69 +302,89 @@ const Index = () => {
       {/* Featured Work Section */}
       <section className="py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              A glimpse into our recent projects and the results we've delivered.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                A glimpse into our recent projects and the results we've delivered.
+              </p>
+            </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <Link
-                key={index}
-                to="/portfolio"
-                className="group relative rounded-2xl overflow-hidden hover-lift"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="text-xs text-primary font-medium">{project.category}</span>
-                  <h3 className="text-lg font-semibold">{project.title}</h3>
-                </div>
-              </Link>
+              <StaggerItem key={index}>
+                <Link to={`/case-study/${project.slug}`}>
+                  <motion.article
+                    className="group relative rounded-2xl overflow-hidden"
+                    whileHover={{ y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="text-xs text-primary font-medium">{project.category}</span>
+                      <h3 className="text-lg font-semibold">{project.title}</h3>
+                    </div>
+                  </motion.article>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <div className="text-center mt-10">
-            <Link to="/portfolio">
-              <Button variant="outline" size="lg">
-                View All Projects
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+          <FadeIn delay={0.4}>
+            <div className="text-center mt-10">
+              <Link to="/portfolio">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-block">
+                  <Button variant="outline" size="lg">
+                    View All Projects
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </motion.div>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
+          <motion.div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Let's Build Something <span className="text-gradient">Great</span>
-            </h2>
-            <p className="text-lg text-muted-foreground mb-10">
-              Ready to transform your digital presence? Get in touch for a free consultation 
-              and let's discuss your project.
-            </p>
-            <Link to="/contact">
-              <Button variant="hero" size="xl">
-                Start Your Project
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                Let's Build Something <span className="text-gradient">Great</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-10">
+                Ready to transform your digital presence? Get in touch for a free consultation 
+                and let's discuss your project.
+              </p>
+              <Link to="/contact">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-block">
+                  <Button variant="hero" size="xl">
+                    Start Your Project
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </motion.div>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </LayoutComponent>
