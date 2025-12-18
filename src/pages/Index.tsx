@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import LayoutComponent from "@/components/layout/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/animations/FadeIn";
-import heroImage from "@/assets/hero-web-dev.jpg";
+// Hero image moved to public folder for LCP optimization
+const heroImage = "/images/hero-web-dev.jpg";
 
 const services = [
   {
