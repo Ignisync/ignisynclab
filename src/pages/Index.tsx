@@ -10,46 +10,46 @@ const heroImage = "/images/hero-web-dev.jpg";
 const services = [
   {
     icon: Code,
-    title: "Website Development",
-    description: "Custom, fast, and responsive websites built with modern technology.",
+    title: "Web Development",
+    description: "Bespoke websites that capture your brand essence and convert visitors into customers.",
   },
   {
     icon: Palette,
-    title: "Branding & Identity",
-    description: "Memorable logos and brand systems that tell your story.",
+    title: "Brand Identity",
+    description: "Strategic branding that differentiates your business and resonates with your audience.",
   },
   {
     icon: Sparkles,
     title: "Graphics Design",
-    description: "Eye-catching visuals for digital and print media.",
+    description: "Compelling visuals crafted to amplify your message across digital and print.",
   },
   {
     icon: LayoutIcon,
     title: "UI/UX Design",
-    description: "User-centered designs that convert visitors into customers.",
+    description: "Intuitive interfaces designed to delight users and drive measurable conversions.",
   },
 ];
 
 const whyUs = [
   {
     icon: Zap,
-    title: "Fast Delivery",
-    description: "We move quickly without sacrificing quality.",
+    title: "Rapid Delivery",
+    description: "Agile workflows that deliver results without compromising excellence.",
   },
   {
     icon: Shield,
-    title: "Quality First",
-    description: "Pixel-perfect designs and clean, maintainable code.",
+    title: "Uncompromising Quality",
+    description: "Pixel-perfect designs backed by clean, scalable code.",
   },
   {
     icon: Users,
-    title: "Client Focused",
-    description: "Your success is our priority. We listen and deliver.",
+    title: "Partnership Approach",
+    description: "We invest in your success as if it were our own.",
   },
   {
     icon: Globe,
-    title: "UK Based",
-    description: "Local expertise with global reach.",
+    title: "UK-Based Studio",
+    description: "Local expertise with international perspective.",
   },
 ];
 
@@ -128,22 +128,21 @@ const Index = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <Sparkles className="w-4 h-4" />
-                Creative Technology Studio
+                UK-Based Creative Studio
               </motion.div>
             </FadeIn>
             
             <FadeIn delay={0.1}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                We Build Websites,{" "}
-                <span className="text-gradient">Brands</span> &{" "}
-                <span className="text-gradient">Digital Experiences</span>
+                We craft digital experiences that{" "}
+                <span className="text-gradient">elevate brands</span>
               </h1>
             </FadeIn>
             
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-                IgnisyncLabs helps startups, SMEs, and organisations ignite their digital presence 
-                with modern design and technology that converts.
+                Strategy-led design and development for ambitious businesses 
+                ready to make an impact in the digital world.
               </p>
             </FadeIn>
             
@@ -192,7 +191,7 @@ const Index = () => {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                End-to-end digital solutions tailored to your business needs.
+                End-to-end digital services designed to help your business thrive online.
               </p>
             </div>
           </FadeIn>
@@ -245,8 +244,8 @@ const Index = () => {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="text-muted-foreground mb-8">
-                  We're not just another agency. We're a dedicated partner committed to 
-                  helping you succeed in the digital world.
+                  We're more than an agency — we're your strategic partner, 
+                  invested in building digital solutions that drive real results.
                 </p>
               </FadeIn>
               
@@ -307,9 +306,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Case Studies</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                A glimpse into our recent projects and the results we've delivered.
+                Explore our portfolio of successful projects that have helped businesses 
+                transform their digital presence and achieve measurable results.
               </p>
             </div>
           </FadeIn>
@@ -373,11 +373,11 @@ const Index = () => {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                Let's Build Something <span className="text-gradient">Great</span>
+                Ready to <span className="text-gradient">Elevate</span> Your Brand?
               </h2>
               <p className="text-lg text-muted-foreground mb-10">
-                Ready to transform your digital presence? Get in touch for a free consultation 
-                and let's discuss your project.
+                Let's discuss how we can transform your vision into a digital experience 
+                that captivates your audience and drives growth.
               </p>
               <Link to="/contact">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-block">
