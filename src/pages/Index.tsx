@@ -57,19 +57,19 @@ const projects = [
     slug: "techstart-ecommerce",
     title: "TechStart E-Commerce",
     category: "Web Development",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80",
   },
   {
     slug: "flame-kitchen-brand",
     title: "Flame Kitchen Brand",
     category: "Branding",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&q=80",
   },
   {
     slug: "finflow-dashboard",
     title: "FinFlow Dashboard",
     category: "UI/UX Design",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80",
   },
 ];
 
@@ -84,6 +84,8 @@ const Index = () => {
             src={heroImage} 
             alt="" 
             className="w-full h-full object-cover opacity-30"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
         </div>
@@ -325,6 +327,7 @@ const Index = () => {
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       />
