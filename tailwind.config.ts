@@ -9,12 +9,13 @@ export default {
       center: true,
       padding: "1.5rem",
       screens: {
-        "2xl": "1280px",
+        "2xl": "1400px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        display: ['Syne', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,11 +51,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        ember: {
+          DEFAULT: "hsl(24 100% 55%)",
+          light: "hsl(35 100% 60%)",
+          dark: "hsl(10 100% 50%)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        inherit: "inherit",
       },
       keyframes: {
         "accordion-down": {
@@ -73,12 +80,28 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "text-reveal": {
+          "0%": { 
+            clipPath: "inset(0 100% 0 0)",
+            opacity: "0"
+          },
+          "100%": { 
+            clipPath: "inset(0 0 0 0)",
+            opacity: "1"
+          },
+        },
+        "line-grow": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s linear infinite",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "text-reveal": "text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "line-grow": "line-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
       },
     },
   },
