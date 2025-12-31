@@ -22,6 +22,18 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -105,14 +117,15 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden fixed inset-0 bg-background z-[100]"
+            className="lg:hidden fixed inset-0 z-[100] overflow-hidden"
+            style={{ backgroundColor: 'hsl(0 0% 4%)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             {/* Close button at top */}
-            <div className="absolute top-0 left-0 right-0 h-20 flex items-center justify-between px-4 border-b border-border/50">
+            <div className="absolute top-0 left-0 right-0 h-20 flex items-center justify-between px-4 border-b border-border/50 bg-background">
               <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-primary flex items-center justify-center">
                   <Flame className="w-5 h-5 text-primary-foreground" />
