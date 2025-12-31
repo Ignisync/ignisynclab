@@ -105,14 +105,32 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden fixed inset-0 bg-background z-40"
+            className="lg:hidden fixed inset-0 bg-background z-[100]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            style={{ top: "80px" }}
           >
-            <div className="container mx-auto px-4 py-12">
+            {/* Close button at top */}
+            <div className="absolute top-0 left-0 right-0 h-20 flex items-center justify-between px-4 border-b border-border/50">
+              <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-primary flex items-center justify-center">
+                  <Flame className="w-5 h-5 text-primary-foreground" />
+                </div>
+                <span className="text-lg font-display font-bold tracking-tight">
+                  Ignisync<span className="text-primary">Labs</span>
+                </span>
+              </Link>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 flex items-center justify-center hover:bg-secondary transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="container mx-auto px-4 py-12 mt-20">
               <div className="flex flex-col gap-2">
                 <Link
                   to="/"
