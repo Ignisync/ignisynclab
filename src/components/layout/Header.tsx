@@ -117,8 +117,8 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden fixed inset-0 z-[100] overflow-hidden"
-            style={{ backgroundColor: 'hsl(0 0% 4%)' }}
+            className="lg:hidden fixed inset-0 z-[100] overflow-hidden bg-background"
+            style={{ backgroundColor: 'hsl(222 47% 6%)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
